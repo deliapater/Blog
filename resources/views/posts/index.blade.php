@@ -18,5 +18,6 @@
             </li>
         @endforeach
     </ul>
+    <div class="d-flex justify-content-end">{{ $posts->links('vendor.pagination.bootstrap-4') }}</div>
 </div>
 @endsection
