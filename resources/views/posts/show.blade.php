@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Post: {{$post->title}}</title>
     </head>
-    <body>
+@extends('layouts.app')
+@section('content')
+    <div class="container">
         <h1>{{ $post->title }}</h1>
         <p>{{ $post->description }}</p>
 
@@ -16,5 +18,6 @@
             @endforeach
         </ul>
         <a href="{{ route('posts.index') }}">Back to Posts</a>
-    </body>
+    </div>
 </html>
+@endsection

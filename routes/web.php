@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', [BlogController::class, 'index'])->name('posts.index');
+Route::get('/posts/create', [BlogController::class, 'create'])->name('posts.create');
 Route::get('/posts/{id}', [BlogController::class, 'show'])->name('posts.show');
-Route::post('/posts/{id}/comments', [BlogController::class, 'storeComment'])->name('posts.store');
+Route::post('/posts/store', [BlogController::class, 'storePost'])->name('posts.store');
+// Route::post('/posts/{id}/comments', [BlogController::class, 'storeComment'])->name('posts.comments.store');
 

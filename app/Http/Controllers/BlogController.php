@@ -20,6 +20,26 @@ class BlogController extends Controller
         return view('posts.show', ['post' => $post]);
     }
 
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function storePost(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required'
+        ]);
+
+        $post = new Post;
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+
+        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
+    }
+
     public function storeComments(Request $request, Post $post)
     {
         $request->validate(['comment' => 'required']);
