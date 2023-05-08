@@ -20,7 +20,19 @@
             </div>
         </div>
         @endforeach
-        <a href="{{ route('posts.index') }}">Back to Posts</a>
+
+        <h2 class="mt-5">Add a Comment</h2>
+        <form method="POST" action="{{ route('posts.storeComment', $post->id) }}">
+            @csrf
+            <div class="form-group">
+                <label for="commentContent">Comment</label>
+                <textarea name="comment" id="commentContent" class="form-control" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="mt-5">
+            <a href="{{ route('posts.index') }}">Back to Posts</a>
+        </div>
     </div>
 </html>
 @endsection

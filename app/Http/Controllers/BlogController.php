@@ -40,12 +40,18 @@ class BlogController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post created successfully!');
     }
 
-    public function storeComments(Request $request, Post $post)
+    public function storeComment(Request $request, $postId)
     {
-        $request->validate(['comment' => 'required']);
-        $comment = new Comment(['comment' => $request->comment]);
-        $post->comments()->save($comment);
+        $request->validate([
+            'comment' => 'required'
+        ]);
 
-        return redirect()->route('posts.show', $post);
+        $comment = new Comment([
+            'comment' => $request->comment,
+            'post_id' => $postId,
+        ]);
+        $comment->save();
+
+        return redirect()->route('posts.show', ['id' => $postId])->with('success', 'Comment added successfully!');
     }
 }
