@@ -2,22 +2,22 @@
 
 @section('content')
 <div class="container">
-    <h1>Posts</h1>
-    <ul>
+    <h1 class="mb-4">Posts</h1>
+    <div class="row">
         @foreach ($posts as $post)
-            <li>
-                <h2><a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ $post->title }}</a></h2>
-                <p>{{ $post->description }}</p>
-
-                <h3>Comments</h3>
-                <ul>
-                    @foreach ($post->comments as $comment)
-                        <li>{{ $comment->comment }}</li>
-                    @endforeach
-                </ul>
-            </li>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ $post->title }}</h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ Str::limit($post->description, 100)  }}</p>
+                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Read More</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
         @endforeach
-    </ul>
+    </div>
     <div class="d-flex justify-content-end">{{ $posts->links('vendor.pagination.bootstrap-4') }}</div>
 </div>
 @endsection

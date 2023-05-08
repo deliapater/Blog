@@ -9,14 +9,17 @@
 @section('content')
     <div class="container">
         <h1>{{ $post->title }}</h1>
-        <p>{{ $post->description }}</p>
+        <p class="lead">{{ $post->description }}</p>
 
-        <h2>Comments</h2>
-        <ul>
+        <h2 class="mt-5">Comments</h2>
             @foreach ($post->comments as $comment)
-                <li>{{ $comment->comment }}</li>
-            @endforeach
-        </ul>
+            <div class="card mb-3">
+            <div class="card-body">
+                <p class="card-text">{{ $comment->comment }}</p>
+                <p class="text-muted mb-0">Posted on {{ $comment->created_at->format('F d, Y') }}</p>
+            </div>
+        </div>
+        @endforeach
         <a href="{{ route('posts.index') }}">Back to Posts</a>
     </div>
 </html>
