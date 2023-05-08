@@ -14,15 +14,15 @@ class BlogController extends Controller
         return view('posts.index', ['posts' => $posts]);
     }
 
-    public function show(Post $post)
+    public function show($id)
     {
-        return view('posts.show', compact('post'));
+        $post = Post::with('comments')->findOrFail($id);
+        return view('posts.show', ['post' => $post]);
     }
 
     public function storeComments(Request $request, Post $post)
     {
         $request->validate(['comment' => 'required']);
-
         $comment = new Comment(['comment' => $request->comment]);
         $post->comments()->save($comment);
 
